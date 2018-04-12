@@ -13,7 +13,7 @@ before_install:
 
 script:
 - ./gradlew clean packDeb
-- deb-s3 upload --bucket test-spinnaker-delete-2 --access-key-id $ARTIFACTS_KEY --secret-access-key $ARTIFACTS_SECRET --arch amd64 --codename trusty --preserve-versions true build/distributions/*.deb
+- deb-s3 upload --bucket test-delete-deb --access-key-id $ARTIFACTS_KEY --secret-access-key $ARTIFACTS_SECRET --arch amd64 --codename trusty --preserve-versions true build/distributions/*.deb
 
 addons:
   artifacts: true
