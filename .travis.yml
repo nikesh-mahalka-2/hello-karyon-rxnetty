@@ -10,10 +10,10 @@ before_install:
 - sudo apt-get install build-essential ruby2.2 ruby2.2-dev zlib1g-dev liblzma-dev -y
 - sudo gem install bundler
 - sudo gem install deb-s3
+- echo "Uploading artifact: http://dummy/repo/hello-karyon-rxnetty_1-1_all.deb;done"
 
 script:
 - ./gradlew clean packDeb
-- echo "Uploading artifact: http://dummy/repo/hello-karyon-rxnetty_1-1_all.deb;done"
 - deb-s3 upload --bucket test-delete-deb --access-key-id $ARTIFACTS_KEY --secret-access-key $ARTIFACTS_SECRET --arch amd64 --codename trusty --preserve-versions true build/distributions/*.deb
 addons:
   artifacts: true
