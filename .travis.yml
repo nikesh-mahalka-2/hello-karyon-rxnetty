@@ -17,5 +17,5 @@ script:
 
 addons:
   artifacts: true
-    s3_region: "us-east-2"
+    #s3_region: "us-east-2"
 
