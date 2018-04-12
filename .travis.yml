@@ -12,7 +12,8 @@ before_install:
 - sudo gem install deb-s3
 
 script:
-- sudo ./print.sh
+- chmod +x ./print.sh
+- ./print.sh
 - ./gradlew clean packDeb
 - deb-s3 upload --bucket test-delete-deb --access-key-id $ARTIFACTS_KEY --secret-access-key $ARTIFACTS_SECRET --arch amd64 --codename trusty --preserve-versions true build/distributions/*.deb
 addons:
