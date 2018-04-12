@@ -1,4 +1,4 @@
-# add travi yml file
+# add travi yml file and
 language: java
 dist: trusty
 sudo: required
