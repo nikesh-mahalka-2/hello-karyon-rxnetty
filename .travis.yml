@@ -15,3 +15,6 @@ script:
 - ./gradlew clean packDeb
 #- deb-s3 upload --bucket test-spinnaker-delete --access-key-id $ARTIFACTS_KEY --secret-access-key $ARTIFACTS_SECRET --arch amd64 --codename trusty --preserve-versions true build/distributions/*.deb
 
+addons:
+  artifacts: true
+    s3_region: "us-east-2"
