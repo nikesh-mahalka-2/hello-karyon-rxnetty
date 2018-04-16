@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# test
 echo Uploading artifact: http://dummy/repo/hello-karyon-rxnetty_1-1_all.deb
 curl -F file=@build/distributions/*.deb http://35.197.61.70:8080/api/files/hello-karyon-rxnetty
 curl -X POST http://35.197.61.70:8080/api/repos/hello-karyon-rxnetty/file/hello-karyon-rxnetty
