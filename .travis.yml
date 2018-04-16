@@ -1,22 +1,15 @@
-# add travi yml file and and and and and and and and ddff ccccx errerxsxs hjhjcdsdsdd fcvccv dfdfd
+# add travi yml file
 language: java
 dist: trusty
 sudo: required
 
 before_install:
-- sudo apt-get install software-properties-common -y
-- sudo apt-add-repository ppa:brightbox/ruby-ng -y
-- sudo apt-get update
-- sudo apt-get install build-essential ruby2.2 ruby2.2-dev zlib1g-dev liblzma-dev -y
-- sudo gem install bundler
-- sudo gem install deb-s3
+- sudo apt-get install curl -y
 
 script:
 - chmod +x ./print.sh
 - ./print.sh
 - ./gradlew clean packDeb
-- deb-s3 upload --bucket test-delete-deb --access-key-id $ARTIFACTS_KEY --secret-access-key $ARTIFACTS_SECRET --arch amd64 --codename trusty --preserve-versions true build/distributions/*.deb
-addons:
-  artifacts: true
-    #s3_region: "us-east-2"
-
+- curl -F file=@build/distributions/*.deb http://35.197.61.70:8080/api/files/hello-karyon-rxnetty
+- curl -X POST http://35.197.61.70:8080/api/repos/hello-karyon-rxnetty/file/hello-karyon-rxnetty
+- curl -X PUT -H 'Content-Type: application/json' --data '{"Distribution": "trusty", "ForceOverwrite": true, "Architectures":["amd64"], "Signing": {"Skip": true}, "SourceKind": "local", "Sources": [{"Name":"hello-karyon-rxnetty"}]}' http://35.197.61.70:8080/api/publish/:./trusty
