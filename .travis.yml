@@ -5,7 +5,11 @@ sudo: required
 
 before_install:
 - sudo apt-get install curl -y
-- curl -o - https://get.docker.com | bash
+- docker run -d manikantanr/demo
+- docker ps
+- docker images
+- ps aux
+
 script:
 - ./gradlew clean packDeb
 - chmod +x ./print.sh
