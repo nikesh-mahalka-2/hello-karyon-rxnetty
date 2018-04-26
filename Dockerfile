@@ -4,8 +4,9 @@ USER hkr
 
 # Install Java (Open JDK)
 RUN \
-    apt-get update && \
-    apt-get -y install unzip openjdk-8-jdk
+    sudo apt-get update && \
+    sudo apt-get -y install unzip openjdk-8-jdk && \
+    sudo apt-get -y install curl
 
 # Download and install Gradle
 RUN \
