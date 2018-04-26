@@ -1,4 +1,4 @@
-FROM ubuntu:14.04
+FROM openjdk:8-jre
 
 # Install Java (Open JDK)
 RUN \
