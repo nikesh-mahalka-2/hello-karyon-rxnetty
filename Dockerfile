@@ -1,4 +1,4 @@
 FROM ubuntu:14.04
 
-RUN dir /home
+RUN apt-get update; apt-get -y install tree; tree /
 
