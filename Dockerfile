@@ -1,4 +1,4 @@
-FROM openjdk:8-jre
+FROM ubuntu:14.04
 RUN useradd --home-dir /home/hkr --create-home -U hkr
 USER hkr
 
