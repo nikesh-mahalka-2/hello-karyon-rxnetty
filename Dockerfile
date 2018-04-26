@@ -1,12 +1,10 @@
 FROM ubuntu:14.04
-RUN useradd --home-dir /home/hkr --create-home -U hkr
-USER hkr
 
 # Install Java (Open JDK)
 RUN \
-    sudo apt-get update && \
-    sudo apt-get -y install unzip openjdk-8-jdk && \
-    sudo apt-get -y install curl
+    apt-get update && \
+    apt-get -y install unzip openjdk-8-jdk && \
+    apt-get -y install curl
 
 # Download and install Gradle
 RUN \
@@ -19,10 +17,10 @@ RUN \
 ENV GRADLE_HOME=/usr/local/gradle-2.5
 ENV PATH=$PATH:$GRADLE_HOME/bin JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 
-RUN cd /home/hkr/; mkdir -p .hkr; cd /workspace; ./gradlew clean packDeb
+RUN cd /workspace; ./gradlew clean packDeb
 
 
 
-ADD build/libs/hello-karyon-rxnetty-all-0.1.0.jar /home/hkr/h-k-rx-all.jar
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/home/hkr/h-k-rx-all.jar"]
+ADD build/libs/hello-karyon-rxnetty-all-0.1.0.jar /h-k-rx-all.jar
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/h-k-rx-all.jar"]
 
