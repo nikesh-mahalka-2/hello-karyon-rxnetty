@@ -1,4 +1,4 @@
 FROM ubuntu:14.04
 
-RUN ls; cd /workspace; ls
+RUN ls -lah /; pwd
 
