@@ -3,7 +3,7 @@ FROM ubuntu:14.04
 # Install Java (Open JDK)
 RUN \
     apt-get update && \
-    apt-get install gradle
+    apt-get install -y gradle
 
 RUN cd /workspace; ./gradlew clean packDeb
 
