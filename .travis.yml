@@ -1,25 +1,26 @@
 # add travi yml file for testing
 language: java
 dist: trusty
-sudo: required
+#sudo: required
 
-before_install:
-- sudo apt-get install curl -y
-- sudo apt-get install tree -y
+#before_install:
+#- sudo apt-get install curl -y
+#- sudo apt-get install tree -y
 
 cache:
   directories:
     - "$HOME/google-cloud-sdk/"
 script:
-- ./gradlew clean fatJar
-- cp Dockerfile build/libs/
+#- ./gradlew clean fatJar
+#- cp Dockerfile build/libs/
 - export CLOUDSDK_CORE_DISABLE_PROMPTS=1
 - if [ ! -d "$HOME/google-cloud-sdk/bin" ]; then rm -rf $HOME/google-cloud-sdk; curl https://sdk.cloud.google.com | bash; fi
-# Add gcloud to $PATH
+ Add gcloud to $PATH
 - source /home/travis/google-cloud-sdk/path.bash.inc
 - gcloud version
 # Auth flow
 - echo $GOOGLE_CREDENTIALS_BASE64 | base64 --decode > gcloud.p12
 - gcloud auth activate-service-account $GCLOUD_EMAIL --key-file gcloud.p12
+- gcloud info
 # Push to Google container registry
-- gcloud container builds submit --tag gcr.io/spinnaker-poc-200412/travis-gradle-image .
+#- gcloud container builds submit --tag gcr.io/spinnaker-poc-200412/travis-gradle-image .
