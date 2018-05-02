@@ -7,6 +7,18 @@ before_install:
 - sudo apt-get install curl -y
 - sudo apt-get install tree -y
 
+cache:
+  directories:
+    - "$HOME/google-cloud-sdk/"
 script:
 - ./gradlew clean fatJar
-- tree .
+- cp Dockerfile build/libs/
+- curl https://sdk.cloud.google.com | bash
+# Add gcloud to $PATH
+- source /home/travis/google-cloud-sdk/path.bash.inc
+- gcloud version
+# Auth flow
+- echo $GOOGLE_CREDENTIALS_BASE64 | base64 --decode > gcloud.p12
+- gcloud auth activate-service-account $GCLOUD_EMAIL --key-file gcloud.p12
+# Push to Google container registry
+- gcloud container builds submit --tag gcr.io/[PROJECT_ID]/travis-gradle-image .
