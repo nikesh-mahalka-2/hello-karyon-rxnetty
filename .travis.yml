@@ -5,7 +5,8 @@ sudo: required
 
 before_install:
 - sudo apt-get install curl -y
+- sudo apt-get install tree -y
 
 script:
 - ./gradlew clean fatJar
-- ls -lah
+- tree .
