@@ -23,6 +23,7 @@ script:
 - gcloud info
 - gcloud config set project spinnaker-poc-200412
 - gcloud info
+- gcloud auth list
 # Push to Google container registry
 - cd build/libs/
 - gcloud container builds submit --tag gcr.io/spinnaker-poc-200412/travis-gradle-image .
