@@ -22,5 +22,7 @@ script:
 - echo $GOOGLE_CREDENTIALS_BASE64 | base64 --decode > gcloud.p12
 - gcloud auth activate-service-account $GCLOUD_EMAIL --key-file gcloud.p12
 - gcloud info
+- gcloud config set project spinnaker-poc-200412
+- gcloud info
 # Push to Google container registry
 #- gcloud container builds submit --tag gcr.io/spinnaker-poc-200412/travis-gradle-image .
